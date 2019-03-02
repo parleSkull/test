@@ -1,0 +1,72 @@
+<?php
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\Frontend\Auth\API\RegisterController;
+use App\Http\Controllers\Frontend\Auth\API\LoginController;
+
+use App\Http\Controllers\Frontend\Auth\SocialLoginController;
+use App\Http\Controllers\Frontend\Auth\ResetPasswordController;
+use App\Http\Controllers\Frontend\Auth\ConfirmAccountController;
+use App\Http\Controllers\Frontend\Auth\ForgotPasswordController;
+use App\Http\Controllers\Frontend\Auth\UpdatePasswordController;
+use App\Http\Controllers\Frontend\Auth\PasswordExpiredController;
+
+/*
+ * Frontend Access Controllers
+ * All route names are prefixed with 'frontend.api.auth'.
+ */
+Route::group(['namespace' => 'Auth\API', 'as' => 'auth.api.'], function () {
+
+    /*
+    * These routes require the user to be logged in
+    */
+    Route::group(['middleware' => 'auth:api'], function () {
+        // Current user TODO: update to point at controller
+        Route::get('/user', function (Request $request) {
+            return $request->user();
+        });
+
+        // Logout user
+        Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+
+        // These routes can not be hit if the password is expired
+        Route::group(['middleware' => 'password_expires'], function () {
+            // Change Password Routes
+            Route::patch('password/update', [UpdatePasswordController::class, 'update'])->name('password.update');
+        });
+
+        // Password expired routes
+        if (is_numeric(config('access.users.password_expires_days'))) {
+            Route::patch('password/expired', [PasswordExpiredController::class, 'update'])->name('password.expired.update');
+        }
+    });
+
+    /*
+     * These routes do not require user to be logged in
+     */
+
+    Route::group(['middleware' => 'guest'], function () {
+        // Authentication Routes
+        Route::post('login', [LoginController::class, 'login'])->name('login.post');
+
+        // Socialite Routes
+        Route::get('login/{provider}', [SocialLoginController::class, 'login'])->name('social.login');
+        Route::get('login/{provider}/callback', [SocialLoginController::class, 'login']);
+
+        // Registration Routes
+        if (config('access.registration')) {
+            Route::post('register', [RegisterController::class, 'register'])->name('register.post');
+        }
+
+        // Confirm Account Routes
+        Route::get('account/confirm/{token}', [ConfirmAccountController::class, 'confirm'])->name('account.confirm');
+        Route::get('account/confirm/resend/{uuid}', [ConfirmAccountController::class, 'sendConfirmationEmail'])->name('account.confirm.resend');
+
+        // Password Reset Routes
+        Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.email');
+        Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email.post');
+
+        Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset.form');
+        Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.reset');
+    });
+});
