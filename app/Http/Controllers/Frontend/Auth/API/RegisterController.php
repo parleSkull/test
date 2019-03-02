@@ -65,14 +65,11 @@ class RegisterController extends Controller
 
             event(new UserRegistered($user));
 
-            return (new UserResource($user))->additional(['meta' => [
-                'message' => 'Registration Successful',
-                'token_data' => [
-                    'token_type' => 'Bearer',
-                    'access_token' => $token->accessToken,
-                    'expires_in' => 60 * 60 * 24 * 365
-                ],
-            ]])->response()->setStatusCode(200);
+            return (new UserResource(array_add($user, 'access_token', [
+                'type' => 'Bearer',
+                'value' => $token->accessToken,
+                'expires_in' => 60 * 60
+            ])))->response()->setStatusCode(200);
         }
     }
 }
