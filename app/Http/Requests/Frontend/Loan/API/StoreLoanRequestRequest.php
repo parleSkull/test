@@ -5,7 +5,7 @@ namespace App\Http\Requests\Frontend\Loan\API;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 
-class StoreLoanOfferRequest extends FormRequest
+class StoreLoanRequestRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,12 +26,8 @@ class StoreLoanOfferRequest extends FormRequest
     {
         return [
             'present_value' => ['required', 'numeric'],
-            'rate_per_period' => ['required', 'numeric'],
             'number_of_periods' => ['required', 'numeric'],
-            'period_type' => ['required','string'],
-            'algorithm_type' => ['required','string'],
-            'repayment_value' => ['required', 'numeric'],
-            'funded' => ['required','boolean'],
+            'period_type' => ['required','string']
         ];
     }
 

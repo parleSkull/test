@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use App\Enums\AlgorithmType;
+use App\Enums\PeriodType;
 
 class CreateLoanOffersTable extends Migration
 {
@@ -21,7 +22,7 @@ class CreateLoanOffersTable extends Migration
             $table->double('present_value')->default(0.00);
             $table->double('rate_per_period')->default(0.00);
             $table->integer('number_of_periods')->default(1);
-            $table->string('period_type')->default(\App\Enums\PeriodType::MONTHLY);
+            $table->string('period_type')->default(PeriodType::MONTHLY);
             $table->string('algorithm_type')->default(AlgorithmType::Standard);
             $table->double('repayment_value')->default(0.00);
             $table->boolean('funded')->default(false);

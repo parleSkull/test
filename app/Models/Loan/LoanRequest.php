@@ -5,11 +5,15 @@ namespace App\Models\Loan;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Loan\Traits\Relationship\LoanRequestRelationship;
+use App\Models\Loan\Traits\Scope\LoanRequestScope;
+use App\Models\Loan\Traits\Attribute\LoanRequestAttribute;
 
 class LoanRequest extends Model
 {
     use SoftDeletes,
-        LoanRequestRelationship;
+        LoanRequestRelationship,
+        LoanRequestScope,
+        LoanRequestAttribute;
 
     /**
      * The attributes that are mass assignable.
@@ -19,11 +23,8 @@ class LoanRequest extends Model
     protected $fillable = [
         'user_id',
         'present_value',
-        'rate_per_period',
+        'period_type',
         'number_of_periods',
-        'algorithm_type',
-        'payment_amount',
-        'interested',
         'granted'
     ];
 
@@ -37,12 +38,17 @@ class LoanRequest extends Model
     ];
 
     /**
+     * The dynamic attributes from mutators that should be returned with the user object.
+     * @var array
+     */
+    protected $appends = ['api_self_link'];
+
+    /**
      * The attributes that should be cast to native types.
      *
      * @var array
      */
     protected $casts = [
-        'granted' => 'boolean',
-        'interested' => 'json'
+        'granted' => 'boolean'
     ];
 }
