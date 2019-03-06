@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Frontend\Loan\API\LoanOfferController;
 use App\Http\Controllers\Frontend\Loan\API\LoanRequestController;
+use App\Http\Controllers\Frontend\Loan\API\LoanContractController;
 /*
  * Frontend Access Controllers
  * All route names are prefixed with 'frontend.api.loan'.
@@ -34,5 +35,18 @@ Route::group(['namespace' => 'Loan\API', 'as' => 'loan.api.'], function () {
         Route::patch('loan-requests/{loanRequest}', [LoanRequestController::class, 'update'])->name('loan-requests.update');
 
         Route::delete('loan-requests/{loanRequest}', [LoanRequestController::class, 'destroy'])->name('loan-requests.destroy');
+
+        // LoanContract Resource
+        Route::get('loan-contracts', [LoanContractController::class, 'index'])->name('loan-contracts.index');
+
+        Route::get('users/{userId}/loan-contracts', [LoanContractController::class, 'getByUserByStatus'])->name('loan-contracts.getByUserByStatus');
+
+        Route::get('loan-contracts/{loanContract}', [LoanContractController::class, 'show'])->name('loan-contracts.show');
+
+        Route::post('loan-contracts', [LoanContractController::class, 'store'])->name('loan-contracts.store');
+
+        Route::patch('loan-contracts/{loanContract}', [LoanContractController::class, 'update'])->name('loan-contracts.update');
+
+        Route::delete('loan-contracts/{loanContract}', [LoanContractController::class, 'destroy'])->name('loan-contracts.destroy');
     });
 });

@@ -4,10 +4,12 @@ namespace App\Models\Loan;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Loan\Traits\Scope\LoanContractScope;
 
 class LoanContract extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes,
+        LoanContractScope;
 
     /**
      * The attributes that are mass assignable.
@@ -15,17 +17,17 @@ class LoanContract extends Model
      * @var array
      */
     protected $fillable = [
-        'borrower_id',
-        'lender_id',
-        'contractable_id',
-        'contractable_type',
+        'consumer_id',
+        'investor_id',
+        'deal_origin_id',
+        'deal_origin_type',
         'present_value',
+        'period_type',
         'rate_per_period',
         'number_of_periods',
         'algorithm_type',
-        'payment_amount',
-        'transactions',
-        'completed'
+        'repayment_value',
+        'status'
     ];
 
     /**
@@ -35,15 +37,5 @@ class LoanContract extends Model
      */
     protected $dates = [
         'deleted_at',
-    ];
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'completed' => 'boolean',
-        'transactions' => 'json'
     ];
 }

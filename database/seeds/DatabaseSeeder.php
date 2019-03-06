@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AuthTableSeeder::class);
         $this->call(LoanOfferTableSeeder::class);
         $this->call(LoanRequestTableSeeder::class);
+        $this->call(LoanContractTableSeeder::class);
 
         Model::reguard();
     }
