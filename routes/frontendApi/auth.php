@@ -26,6 +26,8 @@ Route::group(['namespace' => 'Auth\API', 'as' => 'auth.api.'], function () {
             return $request->user();
         });
 
+        Route::get('users/{userId}', [LoginController::class, 'show'])->name('users.show');
+
         // Logout user
         Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 

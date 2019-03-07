@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend\Auth\API;
 
 use App\Helpers\Auth\Auth;
+use App\Models\Auth\User;
 use Illuminate\Http\Request;
 use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
@@ -35,6 +36,18 @@ class LoginController extends Controller
         request()->merge([$field => $username]);
 
         return $field;
+    }
+
+    /**
+     * Get the user by id.
+     *
+     * @param Request $request
+     * @param $userId
+     * @return string
+     */
+    public function show(Request $request, $userId)
+    {
+        return (new UserResource(User::find($userId)))->response()->setStatusCode(200);
     }
 
     /**
