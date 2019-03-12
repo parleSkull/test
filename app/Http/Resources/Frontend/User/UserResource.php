@@ -24,7 +24,6 @@ class UserResource extends JsonResource
             'email' => $this->when($this->isSelf(), $this->email),
             'avatar_type' => $this->avatar_type,
             'avatar_url' => $this->avatar_url,
-            'cover_url' => $this->cover_url,
             'phone_number' => $this->phone_number,
             'active' => $this->active,
             'confirmed' => $this->confirmed,

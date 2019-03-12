@@ -6,7 +6,10 @@ use BenSampo\Enum\Enum;
 
 final class DealStatus extends Enum
 {
-    const OPEN = "OPEN";
+    const QUEUED = "QUEUED";
+    const ACTIVE = "ACTIVE";
     const SETTLED = "SETTLED";
     const DISPUTED = "DISPUTED";
+    const APPROVED = "APPROVED";
+    const DECLINED = "DECLINED";
 }

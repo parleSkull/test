@@ -5,8 +5,8 @@ namespace App\Models\Auth\Traits\Relationship;
 use App\Models\Communication\Message;
 use App\Models\Fund\Transaction;
 use App\Models\Fund\Wallet;
-use App\Models\Loan\LoanOffer;
-use App\Models\Loan\LoanRequest;
+use App\Models\investment\Investment;
+use App\Models\Loan\Loan;
 use App\Models\System\Session;
 use App\Models\Auth\SocialAccount;
 use App\Models\Auth\PasswordHistory;
@@ -72,16 +72,16 @@ trait UserRelationship
     }
 
     /*
-     * Loan Offers
+     * Investments
      */
-    public function loan_offers(){
-        return $this->hasMany(LoanOffer::class);
+    public function investments(){
+        return $this->hasMany(Investment::class);
     }
 
     /*
-     * Loan Requests
+     * Loans
      */
-    public function loan_requests(){
-        return $this->hasMany(LoanRequest::class);
+    public function loans(){
+        return $this->hasMany(Loan::class);
     }
 }

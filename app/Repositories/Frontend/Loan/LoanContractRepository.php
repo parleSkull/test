@@ -2,9 +2,9 @@
 
 namespace App\Repositories\Frontend\Loan;
 
-use App\Events\Frontend\Loan\LoanContractCreated;
-use App\Events\Frontend\Loan\LoanContractUpdated;
-use App\Models\Loan\LoanContract;
+use App\Events\Frontend\Loan\LoanPaymentCreated;
+use App\Events\Frontend\Loan\LoanPaymentUpdated;
+use App\Models\Loan\LoanPayment;
 use Illuminate\Support\Facades\DB;
 use App\Exceptions\GeneralException;
 use App\Repositories\BaseRepository;
@@ -20,7 +20,7 @@ class LoanContractRepository extends BaseRepository
      */
     public function model()
     {
-        return LoanContract::class;
+        return LoanPayment::class;
     }
 
     /**
@@ -63,7 +63,7 @@ class LoanContractRepository extends BaseRepository
      * @return \Illuminate\Database\Eloquent\Model|mixed
      * @throws \Throwable
      */
-    public function create(array $data) : LoanContract
+    public function create(array $data) : LoanPayment
     {
         return DB::transaction(/**
          * @return \Illuminate\Database\Eloquent\Model
@@ -87,7 +87,7 @@ class LoanContractRepository extends BaseRepository
                 /*
                  * Raise LoanContract created event
                  */
-                event(new LoanContractCreated($loanContract));
+                event(new LoanPaymentCreated($loanContract));
 
                 /*
                 * Return the loanContract object
@@ -100,15 +100,15 @@ class LoanContractRepository extends BaseRepository
     }
 
     /**
-     * @param LoanContract  $loanContract
+     * @param LoanPayment  $loanContract
      * @param array $data
      *
-     * @return LoanContract
+     * @return LoanPayment
      * @throws GeneralException
      * @throws \Exception
      * @throws \Throwable
      */
-    public function update(LoanContract $loanContract, array $data) : LoanContract
+    public function update(LoanPayment $loanContract, array $data) : LoanPayment
     {
         return DB::transaction(function () use ($loanContract, $data) {
             if ($loanContract->update([
@@ -120,7 +120,7 @@ class LoanContractRepository extends BaseRepository
                 'repayment_value' => $data['repayment_value'],
                 'status'            => $data['status']
             ])) {
-                event(new LoanContractUpdated($loanContract));
+                event(new LoanPaymentUpdated($loanContract));
 
                 return $loanContract;
             }

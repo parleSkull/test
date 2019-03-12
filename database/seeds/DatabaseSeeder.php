@@ -23,9 +23,12 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call(AuthTableSeeder::class);
-        $this->call(LoanOfferTableSeeder::class);
-        $this->call(LoanRequestTableSeeder::class);
-        $this->call(LoanContractTableSeeder::class);
+        $this->call(InvestmentTypeTableSeeder::class);
+        $this->call(LoanTypeTableSeeder::class);
+        $this->call(InvestmentTableSeeder::class);
+        $this->call(InvestmentPaymentTableSeeder::class);
+        $this->call(LoanTableSeeder::class);
+        $this->call(LoanPaymentTableSeeder::class);
 
         Model::reguard();
     }
