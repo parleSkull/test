@@ -4,11 +4,13 @@ namespace App\Repositories\Frontend\Loan;
 
 use App\Events\Frontend\Investment\InvestmentCreated;
 use App\Events\Frontend\Investment\InvestmentUpdated;
+use App\Models\Company\InvestmentType;
 use App\Models\Investment\Investment;
 use Illuminate\Support\Facades\DB;
 use App\Exceptions\GeneralException;
 use App\Repositories\BaseRepository;
 use Illuminate\Pagination\LengthAwarePaginator;
+use App\Models\Auth\User;
 
 /**
  * Class InvestmentRepository.
@@ -39,6 +41,23 @@ class InvestmentRepository extends BaseRepository
     }
 
     /**
+     * @param int $paged
+     * @param string $orderBy
+     * @param string $sort
+     *
+     * @param $userId
+     * @return mixed
+     */
+    public function getPaginatedByUser($paged = 25, $orderBy = 'created_at', $sort = 'desc', $userId) : LengthAwarePaginator
+    {
+//        ->with('user')  ->open()
+        return $this->model
+            ->owner($userId)
+            ->orderBy($orderBy, $sort)
+            ->paginate($paged);
+    }
+
+    /**
      * @param array $data
      *
      * @return \Illuminate\Database\Eloquent\Model|mixed
@@ -46,16 +65,17 @@ class InvestmentRepository extends BaseRepository
      */
     public function create(array $data) : Investment
     {
+        $newData['user_id'] = $data['user_id'];
+        $newData['user_uuid'] = User::find($data['user_id'])->uuid;
+        $newData['alias'] = $data['alias'];
+        $newData['initial_value'] = $data['initial_value'];
+        $newData['current_value'] = $data['initial_value'];
+        $newData['interest_rate'] = InvestmentType::where('name', '=', 'Standard')->value('interest_rate_pa');
         return DB::transaction(/**
          * @return \Illuminate\Database\Eloquent\Model
          */
-            function () use ($data) {
-            $investment = parent::create([
-                'user_id'           => $data['user_id'],
-                'initial_value'          => $data['initial_value'],
-                'current_value'        => $data['current_value'],
-                'interest_rate'         => $data['interest_rate']
-            ]);
+            function () use ($newData) {
+            $investment = parent::create($newData);
 
             if ($investment) {
                 /*
@@ -86,6 +106,7 @@ class InvestmentRepository extends BaseRepository
     {
         return DB::transaction(function () use ($investment, $data) {
             if ($investment->update([
+                'alias'           => $data['alias'],
                 'initial_value'          => $data['initial_value'],
                 'current_value'        => $data['current_value'],
                 'interest_rate'         => $data['interest_rate']

@@ -22,9 +22,11 @@ class Investment extends Model
      */
     protected $fillable = [
         'user_id',
+        'user_uuid',
+        'alias',
         'initial_value',
         'current_value',
-        'interest_rate'
+        'interest_rate',
     ];
 
     /**

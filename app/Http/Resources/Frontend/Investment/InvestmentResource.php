@@ -19,6 +19,7 @@ class InvestmentResource extends JsonResource
             'uuid' => $this->uuid,
             'user_id' => $this->user_id,
             'user_uuid' => $this->user_uuid,
+            'alias' => $this->alias,
             'initial_value' => $this->initial_value,
             'current_value' => $this->current_value,
             'interest_rate' => $this->interest_rate,

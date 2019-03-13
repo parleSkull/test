@@ -39,6 +39,18 @@ class InvestmentController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @param Request $request
+     * @param $userId
+     * @return InvestmentCollection|\Illuminate\Http\Response
+     */
+    public function byUser(Request $request, $userId)
+    {
+        return new InvestmentCollection($this->investmentRepository->getPaginatedByUser(25, 'id', 'asc', $userId));
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  Request  $request
@@ -47,11 +59,7 @@ class InvestmentController extends Controller
      */
     public function store(Request $request)
     {
-        $investment = $this->investmentRepository->create(array_add($request->only(
-            'initial_value',
-            'current_value',
-            'interest_rate'
-        ), 'user_id', $request->user()->id));
+        $investment = $this->investmentRepository->create(array_add($request->all(), 'user_id', $request->user()->id));
 
         //return res(201, __('alerts.frontend.loans.offers.created'));
         return (new InvestmentResource($investment))->response()->setStatusCode(201);
@@ -82,7 +90,8 @@ class InvestmentController extends Controller
         $investment = $this->investmentRepository->update($investment, $request->only(
             'initial_value',
             'current_value',
-            'interest_rate'
+            'interest_rate',
+            'alias'
         ));
 
         //return res(200, __('alerts.frontend.loans.offers.updated'));

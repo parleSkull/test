@@ -20,12 +20,12 @@ class CreateInvestmentPaymentsTable extends Migration
             $table->foreign('investment_id')->references('id')->on('investments')->onDelete('cascade');
             $table->string('investment_uuid')->nullable();
             $table->integer('payment_number')->nullable();
-            $table->double('reinvestment_value')->default(0.00);
-            $table->double('service_fee')->default(0.00);
-            $table->double('beginning_balance')->default(0.00);
-            $table->double('interest_earned')->default(0.00);
-            $table->double('withdrawal')->default(0.00);
-            $table->double('ending_balance')->default(0.00);
+            $table->double('reinvestment_value',null, 2)->default(0.00);
+            $table->double('service_fee',null, 2)->default(0.00);
+            $table->double('beginning_balance',null, 2)->default(0.00);
+            $table->double('interest_earned',null, 2)->default(0.00);
+            $table->double('withdrawal',null, 2)->default(0.00);
+            $table->double('ending_balance',null, 2)->default(0.00);
             $table->string('deal_status')->default(DealStatus::QUEUED);
             $table->timestamp('start_at')->nullable();
             $table->timestamps();

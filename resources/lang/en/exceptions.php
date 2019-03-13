@@ -79,5 +79,11 @@ return [
 
             'registration_disabled' => 'Registration is currently closed.',
         ],
+        'investments' => [
+            'create_error' => 'Failed to create Investment',
+        ],
+        'loans' => [
+            'create_error' => 'Failed to create Loan',
+        ]
     ],
 ];

@@ -72,4 +72,15 @@ trait LoanScope
     {
         return $query->where('deal_status', $status);
     }
+
+    /**
+     * @param $query
+     * @param $status
+     *
+     * @return mixed
+     */
+    public function scopeOwner($query, $status)
+    {
+        return $query->where('user_id', $status);
+    }
 }

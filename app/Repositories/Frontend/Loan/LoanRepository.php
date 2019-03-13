@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\DB;
 use App\Exceptions\GeneralException;
 use App\Repositories\BaseRepository;
 use Illuminate\Pagination\LengthAwarePaginator;
+use App\Models\Company\LoanType;
+use App\Models\Auth\User;
 
 /**
  * Class LoanRepository.
@@ -39,6 +41,23 @@ class LoanRepository extends BaseRepository
     }
 
     /**
+     * @param int $paged
+     * @param string $orderBy
+     * @param string $sort
+     *
+     * @param $userId
+     * @return mixed
+     */
+    public function getPaginatedByUser($paged = 25, $orderBy = 'created_at', $sort = 'desc', $userId) : LengthAwarePaginator
+    {
+//        ->with('user') ->granted(false)
+        return $this->model
+            ->owner($userId)
+            ->orderBy($orderBy, $sort)
+            ->paginate($paged);
+    }
+
+    /**
      * @param array $data
      *
      * @return \Illuminate\Database\Eloquent\Model|mixed
@@ -46,14 +65,19 @@ class LoanRepository extends BaseRepository
      */
     public function create(array $data) : Loan
     {
+        $newData['user_id'] = $data['user_id'];
+        $newData['user_uuid'] = User::find($data['user_id'])->uuid;
+        $newData['alias'] = $data['alias'];
+        $newData['purpose'] = $data['purpose'];
+        $newData['requested_value'] = $data['requested_value'];
+        $newData['interest_rate'] = LoanType::where('name', '=', 'Standard')->value('interest_rate_pm');
+        $newData['repayment_value'] = (($newData['interest_rate'] + 100.00) / 100) * $newData['requested_value'];
+        $newData['interest_value'] = $newData['repayment_value'] - $newData['requested_value'];
         return DB::transaction(/**
          * @return \Illuminate\Database\Eloquent\Model
          */
-            function () use ($data) {
-            $loan = parent::create([
-                'user_id'           => $data['user_id'],
-                'requested_value'          => $data['present_value']
-            ]);
+            function () use ($newData) {
+            $loan = parent::create($newData);
 
             if ($loan) {
                 /*
@@ -84,6 +108,8 @@ class LoanRepository extends BaseRepository
     {
         return DB::transaction(function () use ($loan, $data) {
             if ($loan->update([
+                'purpose'           => $data['purpose'],
+                'alias'           => $data['alias'],
                 'requested_value'          => $data['present_value']
             ])) {
                 event(new LoanUpdated($loan));

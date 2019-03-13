@@ -15,7 +15,7 @@ class CreateInvestmentTypesTable extends Migration
     {
         Schema::create('investment_types', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('name')->unique();
             $table->double('interest_rate_pa')->default(0.00);
             $table->double('interest_rate_pm')->default(0.00);
             $table->integer('num_payments_pa')->default(12);

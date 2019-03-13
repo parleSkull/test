@@ -19,9 +19,9 @@ class CreateLoanPaymentsTable extends Migration
             $table->foreign('loan_id')->references('id')->on('loans')->onDelete('cascade');
             $table->string('loan_uuid')->nullable();
             $table->integer('payment_number')->nullable();
-            $table->double('payment_value')->default(0.00);
-            $table->double('pre_balance')->default(0.00);
-            $table->double('post_balance')->default(0.00);
+            $table->double('payment_value',null, 2)->default(0.00);
+            $table->double('pre_balance',null, 2)->default(0.00);
+            $table->double('post_balance',null, 2)->default(0.00);
             $table->timestamps();
             $table->softDeletes();
         });

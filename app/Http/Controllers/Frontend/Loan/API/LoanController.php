@@ -39,6 +39,18 @@ class LoanController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @param Request $request
+     * @param $userId
+     * @return LoanCollection|\Illuminate\Http\Response
+     */
+    public function byUser(Request $request, $userId)
+    {
+        return new LoanCollection($this->loanRepository->getPaginatedByUser(25, 'id', 'asc', $userId));
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  Request  $request
@@ -48,7 +60,9 @@ class LoanController extends Controller
     public function store(Request $request)
     {
         $loan = $this->loanRepository->create(array_add($request->only(
-            'requested_value'
+            'requested_value',
+            'alias',
+            'purpose'
         ), 'user_id', $request->user()->id));
 
         //return res(201, __('alerts.frontend.loans.Requests.created'));
@@ -78,7 +92,9 @@ class LoanController extends Controller
     public function update(Request $request, Loan $loan)
     {
         $loan = $this->loanRepository->update($loan, $request->only(
-            'requested_value'
+            'requested_value',
+            'alias',
+            'purpose'
         ));
 
         //return res(200, __('alerts.frontend.loans.Requests.updated'));

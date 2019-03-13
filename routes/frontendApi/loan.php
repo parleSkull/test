@@ -16,6 +16,8 @@ Route::group(['namespace' => 'Loan\API', 'as' => 'loan.api.'], function () {
         // Investment Resource
         Route::get('investments', [InvestmentController::class, 'index'])->name('investments.index');
 
+        Route::get('users/{userId}/investments', [InvestmentController::class, 'byUser'])->name('investments.byUser');
+
         Route::get('investments/{investment}', [InvestmentController::class, 'show'])->name('investments.show');
 
         Route::post('investments', [InvestmentController::class, 'store'])->name('investments.store');
@@ -26,6 +28,8 @@ Route::group(['namespace' => 'Loan\API', 'as' => 'loan.api.'], function () {
 
         // Loan Resource
         Route::get('loans', [LoanController::class, 'index'])->name('loans.index');
+
+        Route::get('users/{userId}/loans', [LoanController::class, 'byUser'])->name('loans.byUser');
 
         Route::get('loans/{loan}', [LoanController::class, 'show'])->name('loans.show');
 

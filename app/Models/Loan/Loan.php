@@ -22,7 +22,13 @@ class Loan extends Model
      */
     protected $fillable = [
         'user_id',
-        'requested_value'
+        'user_uuid',
+        'purpose',
+        'alias',
+        'requested_value',
+        'interest_rate',
+        'repayment_value',
+        'interest_value'
     ];
 
     /**

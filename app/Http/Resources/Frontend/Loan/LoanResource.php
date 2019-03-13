@@ -19,6 +19,8 @@ class LoanResource extends JsonResource
             'uuid' => $this->uuid,
             'user_id' => $this->user_id,
             'user_uuid' => $this->user_uuid,
+            'alias' => $this->alias,
+            'purpose' => $this->purpose,
             'requested_value' => $this->requested_value,
             'disbursed_value' => $this->disbursed_value,
             'service_charge_value' => $this->service_charge_value,
