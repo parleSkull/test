@@ -27,6 +27,8 @@ class Investment extends Model
         'initial_value',
         'current_value',
         'interest_rate',
+        'deal_status',
+        'cumulative_interest'
     ];
 
     /**
