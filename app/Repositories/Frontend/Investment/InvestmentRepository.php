@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Frontend\Loan;
 
+use App\Enums\DealStatus;
 use App\Events\Frontend\Investment\InvestmentCreated;
 use App\Events\Frontend\Investment\InvestmentUpdated;
 use App\Models\Company\InvestmentType;
@@ -70,6 +71,8 @@ class InvestmentRepository extends BaseRepository
         $newData['alias'] = $data['alias'];
         $newData['initial_value'] = $data['initial_value'];
         $newData['current_value'] = $data['initial_value'];
+        $newData['deal_status'] = DealStatus::QUEUED;
+        $newData['cumulative_interest'] = 0.00;
         $newData['interest_rate'] = InvestmentType::where('name', '=', 'Standard')->value('interest_rate_pa');
         return DB::transaction(/**
          * @return \Illuminate\Database\Eloquent\Model
