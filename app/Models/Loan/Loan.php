@@ -28,7 +28,9 @@ class Loan extends Model
         'requested_value',
         'interest_rate',
         'repayment_value',
-        'interest_value'
+        'interest_value',
+        'deal_status',
+        'number_of_payments'
     ];
 
     /**

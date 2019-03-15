@@ -11,6 +11,7 @@ use App\Repositories\BaseRepository;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Models\Company\LoanType;
 use App\Models\Auth\User;
+use App\Enums\DealStatus;
 
 /**
  * Class LoanRepository.
@@ -70,6 +71,8 @@ class LoanRepository extends BaseRepository
         $newData['alias'] = $data['alias'];
         $newData['purpose'] = $data['purpose'];
         $newData['requested_value'] = $data['requested_value'];
+        $newData['deal_status'] = DealStatus::QUEUED;
+        $newData['number_of_payments'] = 0;
         $newData['interest_rate'] = LoanType::where('name', '=', 'Standard')->value('interest_rate_pm');
         $newData['repayment_value'] = (($newData['interest_rate'] + 100.00) / 100) * $newData['requested_value'];
         $newData['interest_value'] = $newData['repayment_value'] - $newData['requested_value'];
