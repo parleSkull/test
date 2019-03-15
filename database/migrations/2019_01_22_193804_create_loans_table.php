@@ -19,7 +19,7 @@ class CreateLoansTable extends Migration
             $table->uuid('uuid');
             $table->unsignedInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('user_uuid')->nullable();
+            $table->string('user_uuid');
             $table->string('alias')->nullable();
             $table->string('purpose')->nullable();
             $table->double('requested_value',null, 2)->default(0.00);
@@ -31,7 +31,7 @@ class CreateLoansTable extends Migration
             $table->integer('number_of_payments')->default(0);
             $table->string('deal_status')->default(DealStatus::QUEUED);
             $table->unsignedInteger('next_repayment_id')->nullable();
-            $table->double('next_repayment_value',null, 2)->nullable();
+            $table->double('next_repayment_value',null, 2)->default(0.00);
             $table->timestamp('start_at')->nullable();
             $table->timestamp('due_at')->nullable();
             $table->timestamps();
