@@ -15,8 +15,10 @@ class CreateWalletsTable extends Migration
     {
         Schema::create('wallets', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('user_id')->nullable();
+            $table->uuid('uuid');
+            $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
+            $table->string('user_uuid');
             $table->double('balance')->default(0.00);
             $table->timestamps();
             $table->softDeletes();

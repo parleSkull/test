@@ -7,10 +7,13 @@ use BenSampo\Enum\Contracts\LocalizedEnum;
 
 final class TransactionType extends Enum implements LocalizedEnum
 {
-    const Unspecified = 0;
-    const Deposit = 1;
-    const Refund = 2;
-    const Withdraw = 3;
-    const LoanRepayment = 4;
-    const ServiceCharge = 5;    
+    const Unspecified = "Unspecified";
+    const Deposit = "Deposit";
+    const Refund = "Refund";
+    const Withdraw = "Withdraw";
+    const LoanRepayment = "LoanRepayment";
+    const ServiceCharge = "ServiceCharge";
+    const Invest = "Invest";
+    const InvestmentPayment = "InvestmentPayment";
+    const LoanCredit = "LoanCredit";
 }

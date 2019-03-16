@@ -2,6 +2,8 @@
 
 namespace App\Models\Auth\Traits\Method;
 
+use App\Enums\TransactionMode;
+use App\Enums\TransactionStatus;
 use Illuminate\Support\Facades\Redis;
 
 /**
@@ -76,15 +78,23 @@ trait UserMethod
 
     /**
      * Move credits to this account
-     * @param  integer $amount
-     * @param  string  $type
-     * @param  array   $meta
+     * @param  double $amount
+     * @param  string $type
+     * @param  array $meta
+     * @param bool $accepted
      */
-    public function deposit($amount, $type = 'deposit', $meta = [], $accepted = true)
+    public function deposit($amount, $type = 'Deposit', $meta = [], $accepted = true)
     {
+        $pre_bal = $this->wallet->balance;
+        $post_bal = $pre_bal;
+        $status = TransactionStatus::FAILED;
+
         if ($accepted) {
+            $pre_bal = $this->wallet->balance;
             $this->wallet->balance += $amount;
             $this->wallet->save();
+            $post_bal = $this->wallet->balance;
+            $status = TransactionStatus::SUCCESS;
         } elseif (! $this->wallet->exists) {
             $this->wallet->save();
         }
@@ -92,8 +102,12 @@ trait UserMethod
         $this->wallet->transactions()
             ->create([
                 'amount' => $amount,
-                'hash' => uniqid('lwch_'),
-                'type' => $type,
+                'hash' => uniqid('sfdp_'),
+                'transaction_mode' => TransactionMode::Credit,
+                'transaction_type' => $type,
+                'transaction_status' => $status,
+                'pre_balance' => $pre_bal,
+                'post_balance' => $post_bal,
                 'accepted' => $accepted,
                 'meta' => $meta
             ]);
@@ -117,13 +131,20 @@ trait UserMethod
      * @param  array   $meta
      * @param  boolean $shouldAccept
      */
-    public function withdraw($amount, $type = 'withdraw', $meta = [], $shouldAccept = true)
+    public function withdraw($amount, $type = 'Withdraw', $meta = [], $shouldAccept = true)
     {
+        $pre_bal = $this->wallet->balance;
+        $post_bal = $pre_bal;
+        $status = TransactionStatus::FAILED;
+
         $accepted = $shouldAccept ? $this->canWithdraw($amount) : true;
 
         if ($accepted) {
+            $pre_bal = $this->wallet->balance;
             $this->wallet->balance -= $amount;
             $this->wallet->save();
+            $post_bal = $this->wallet->balance;
+            $status = TransactionStatus::SUCCESS;
         } elseif (! $this->wallet->exists) {
             $this->wallet->save();
         }
@@ -131,8 +152,12 @@ trait UserMethod
         $this->wallet->transactions()
             ->create([
                 'amount' => $amount,
-                'hash' => uniqid('lwch_'),
-                'type' => $type,
+                'hash' => uniqid('sfwd_'),
+                'transaction_mode' => TransactionMode::Debit,
+                'transaction_type' => $type,
+                'transaction_status' => $status,
+                'pre_balance' => $pre_bal,
+                'post_balance' => $post_bal,
                 'accepted' => $accepted,
                 'meta' => $meta
             ]);
@@ -242,3 +267,4 @@ trait UserMethod
         return config('access.users.requires_approval') && ! $this->confirmed;
     }
 }
+

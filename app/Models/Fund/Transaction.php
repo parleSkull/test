@@ -3,13 +3,17 @@
 namespace App\Models\Fund;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Fund\Traits\Relationship\TransactionRelationship;
 use App\Models\Fund\Traits\Attribute\TransactionAttribute;
+use App\Models\Fund\Traits\Scope\TransactionScope;
 
 class Transaction extends Model
 {
-    use TransactionRelationship,
-        TransactionAttribute;
+    use SoftDeletes,
+        TransactionRelationship,
+        TransactionAttribute,
+        TransactionScope;
 
     /**
      * The attributes that are mass assignable.
@@ -17,10 +21,14 @@ class Transaction extends Model
      * @var array
      */
     protected $fillable = [
-        'wallet_id',
-        'amount',
         'hash',
+        'wallet_id',
+        'transaction_mode',
         'transaction_type',
+        'amount',
+        'pre_balance',
+        'post_balance',
+        'transaction_status',
         'accepted',
         'meta'
     ];

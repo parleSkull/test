@@ -8,6 +8,7 @@ use App\Events\Frontend\Auth\UserRegistered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Repositories\Frontend\Auth\UserRepository;
 use App\Http\Resources\Frontend\Auth\UserResource;
+use Illuminate\Http\Request;
 
 /**
  * Class RegisterController.
@@ -37,10 +38,9 @@ class RegisterController extends Controller
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      * @throws \Throwable
      */
-    public function register(RegisterRequest $request)
+    public function register(Request $request)
     {
-        $data = $request->only(
-            'account_type', 'username', 'email', 'phone_number', 'password');
+        $data = $request->all();
 //        // sometimes last_name will be empty if it's institution
 //        $data['last_name'] = $request->get('last_name', "");
 //        $data = $request->validated();

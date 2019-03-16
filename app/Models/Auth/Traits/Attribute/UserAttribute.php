@@ -2,6 +2,7 @@
 
 namespace App\Models\Auth\Traits\Attribute;
 
+use App\Enums\TransactionMode;
 use Illuminate\Support\Facades\Hash;
 
 /**
@@ -17,12 +18,12 @@ trait UserAttribute
     public function getActualBalanceAttribute()
     {
         $credits = $this->wallet->transactions()
-            ->whereIn('type', ['deposit', 'refund'])
+            ->where('transaction_mode', TransactionMode::Credit)
             ->where('accepted', 1)
             ->sum('amount');
 
         $debits = $this->wallet->transactions()
-            ->whereIn('type', ['withdraw', 'payout'])
+            ->where('transaction_mode', TransactionMode::Debit)
             ->where('accepted', 1)
             ->sum('amount');
 

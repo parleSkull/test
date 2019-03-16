@@ -95,8 +95,8 @@ class UserRepository extends BaseRepository
             $user = parent::create([
                 'account_type'          => $data['account_type'],
                 'username'          => $data['username'],
-//                'first_name'        => $data['first_name'],
-//                'last_name'         => $data['last_name'],
+                'first_name'        => $data['first_name'],
+                'last_name'         => $data['last_name'],
                 'email'             => $data['email'],
                 'phone_number'             => $data['phone_number'],
                 'confirmation_code' => md5(uniqid(mt_rand(), true)),
@@ -111,6 +111,14 @@ class UserRepository extends BaseRepository
                  * Add the default site role to the new user
                  */
                 $user->assignRole(config('access.users.default_role'));
+
+                /*
+                 * Create Wallet
+                 */
+                $user->wallet()->create([
+                    'user_uuid' => $user->uuid,
+                    'balance' => 0.00
+                ]);
             }
 
             /*

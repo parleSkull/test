@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\Frontend\Investment\API\InvestmentController;
 use App\Http\Controllers\Frontend\Loan\API\LoanController;
+use App\Http\Controllers\Frontend\Fund\API\WalletController;
+use App\Http\Controllers\Frontend\Fund\API\TransactionController;
+
 /*
  * Frontend Access Controllers
  * All route names are prefixed with 'frontend.api.loan'.
@@ -38,5 +41,17 @@ Route::group(['namespace' => 'Loan\API', 'as' => 'loan.api.'], function () {
         Route::patch('loans/{loan}', [LoanController::class, 'update'])->name('loans.update');
 
         Route::delete('loans/{loan}', [LoanController::class, 'destroy'])->name('loans.destroy');
+
+        // Wallet Resource
+        Route::get('wallets/by-user', [WalletController::class, 'byUser'])->name('wallets.byUser');
+
+        Route::patch('wallets/deposit', [WalletController::class, 'deposit'])->name('wallets.deposit');
+
+        Route::patch('wallets/withdraw', [WalletController::class, 'withdraw'])->name('wallets.withdraw');
+
+        // Transaction Resource
+        Route::get('wallets/{wallet}/transactions', [TransactionController::class, 'byWallet'])->name('transactions.byWallet');
+
+        Route::get('transactions/{transaction}', [TransactionController::class, 'show'])->name('transactions.show');
     });
 });

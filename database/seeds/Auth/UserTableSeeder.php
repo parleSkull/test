@@ -21,7 +21,7 @@ class UserTableSeeder extends Seeder
         $this->disableForeignKeys();
 
         // Add the master administrator, user id of 1
-        User::create([
+        $user = User::create([
             'account_type'          => AccountType::INDIVIDUAL,
             'username'        => 'admin',
             'first_name'        => 'Admin',
@@ -33,7 +33,15 @@ class UserTableSeeder extends Seeder
             'confirmed'         => true,
         ]);
 
-        User::create([
+        /*
+         * Create Wallet
+         */
+        $user->wallet()->create([
+            'user_uuid' => $user->uuid,
+            'balance' => 0.00
+        ]);
+
+        $user = User::create([
             'account_type'          => AccountType::INSTITUTION,
             'username'        => 'backend',
             'first_name'        => 'Backend',
@@ -45,7 +53,15 @@ class UserTableSeeder extends Seeder
             'confirmed'         => true,
         ]);
 
-        User::create([
+        /*
+         * Create Wallet
+         */
+        $user->wallet()->create([
+            'user_uuid' => $user->uuid,
+            'balance' => 0.00
+        ]);
+
+        $user = User::create([
             'account_type'          => AccountType::INDIVIDUAL,
             'username'        => 'default',
             'first_name'        => 'Default',
@@ -57,7 +73,15 @@ class UserTableSeeder extends Seeder
             'confirmed'         => true,
         ]);
 
-        User::create([
+        /*
+         * Create Wallet
+         */
+        $user->wallet()->create([
+            'user_uuid' => $user->uuid,
+            'balance' => 0.00
+        ]);
+
+        $user = User::create([
             'account_type'          => AccountType::INDIVIDUAL,
             'username'        => 'stevem',
             'first_name'        => 'Steve',
@@ -67,6 +91,14 @@ class UserTableSeeder extends Seeder
             'password'          => 'stevem',
             'confirmation_code' => md5(uniqid(mt_rand(), true)),
             'confirmed'         => true,
+        ]);
+
+        /*
+         * Create Wallet
+         */
+        $user->wallet()->create([
+            'user_uuid' => $user->uuid,
+            'balance' => 0.00
         ]);
 
         $this->enableForeignKeys();

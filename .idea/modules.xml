@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../mobilemoney-master/.idea/mobilemoney-master.iml" filepath="$PROJECT_DIR$/../mobilemoney-master/.idea/mobilemoney-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../pesaPi-master/.idea/pesaPi-master.iml" filepath="$PROJECT_DIR$/../pesaPi-master/.idea/pesaPi-master.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/solventfund.iml" filepath="$PROJECT_DIR$/.idea/solventfund.iml" />
     </modules>
   </component>
