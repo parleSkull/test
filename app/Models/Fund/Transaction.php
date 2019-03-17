@@ -40,6 +40,7 @@ class Transaction extends Model
      */
     protected $casts = [
         'amount' => 'float',
-        'meta' => 'json'
+        'meta' => 'json',
+        'accepted' => 'boolean'
     ];
 }
