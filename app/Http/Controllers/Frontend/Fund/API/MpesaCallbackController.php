@@ -15,6 +15,7 @@ use App\Services\MobileMoney\Mpesa\Laravel\Facades\STK;
 use App\Services\MobileMoney\Mpesa\Support\MpesaConstant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use function PHPSTORM_META\type;
 
@@ -44,6 +45,7 @@ class MpesaCallbackController extends Controller
 //        $callbackJSONData=file_get_contents('php://input');
 //        $callbackData=json_decode($callbackJSONData);
         $callbackJSONData=$request->getContent();
+        Log::debug('Callback data '.$callbackJSONData);
         $callbackData=json_decode($callbackJSONData);
         $resultCode=$callbackData->Body->stkCallback->ResultCode;
         $resultDesc=$callbackData->Body->stkCallback->ResultDesc;
