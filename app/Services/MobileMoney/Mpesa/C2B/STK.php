@@ -209,7 +209,7 @@ class STK
 
         $shortCode = $configs->getAccountKey('lnmo.short_code');
         $passkey   = $configs->getAccountKey('lnmo.passkey');
-        $callback  = url($configs->getAccountKey('lnmo.callback'), ['uuid' => $uuid ?: $this->uuid], false);
+        $callback  = url($configs->getAccountKey('lnmo.callback'));
 
         $body = [
             'BusinessShortCode' => $shortCode,
