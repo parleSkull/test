@@ -69,6 +69,6 @@ Route::group(['namespace' => 'Loan\API', 'as' => 'loan.api.'], function () {
      */
 
     Route::group(['middleware' => 'guest'], function () {
-        Route::post('mpesa/stk-result', [MpesaCallbackController::class, 'processSTKPushRequestCallback'])->name('mpesa.processSTKPushRequestCallback');
+        Route::get('mpesa/stk-result', [MpesaCallbackController::class, 'processSTKPushRequestCallback'])->name('mpesa.processSTKPushRequestCallback');
     });
 });
