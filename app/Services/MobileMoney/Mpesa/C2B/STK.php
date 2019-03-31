@@ -8,6 +8,7 @@ use App\Models\MobileMoney\Mpesa\C2B\STKSuccessResponse;
 use App\Services\MobileMoney\Mpesa\Support\MpesaConstant;
 use Carbon\Carbon;
 use GuzzleHttp\Exception\RequestException;
+use Illuminate\Support\Facades\Log;
 use InvalidArgumentException;
 use App\Services\MobileMoney\Mpesa\Engine\Core;
 use App\Services\MobileMoney\Mpesa\Repositories\ConfigurationRepository;
@@ -210,6 +211,7 @@ class STK
         $shortCode = $configs->getAccountKey('lnmo.short_code');
         $passkey   = $configs->getAccountKey('lnmo.passkey');
         $callback  = url($configs->getAccountKey('lnmo.callback'));
+        Log::debug('Callback url '.$callback);
 
         $body = [
             'BusinessShortCode' => $shortCode,
