@@ -210,7 +210,7 @@ class STK
 
         $shortCode = $configs->getAccountKey('lnmo.short_code');
         $passkey   = $configs->getAccountKey('lnmo.passkey');
-        $callback  = $configs->getAccountKey('lnmo.callback_custom');
+        $callback  = url($configs->getAccountKey('lnmo.callback'));
         $password = $this->getPassword($shortCode, $passkey, $time);
 
         Log::debug('Callback url '.$callback);
