@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../MobileMoney_HTTP/.idea/MobileMoney_HTTP.iml" filepath="$PROJECT_DIR$/../MobileMoney_HTTP/.idea/MobileMoney_HTTP.iml" />
       <module fileurl="file://$PROJECT_DIR$/../mobilemoney-master/.idea/mobilemoney-master.iml" filepath="$PROJECT_DIR$/../mobilemoney-master/.idea/mobilemoney-master.iml" />
       <module fileurl="file://$PROJECT_DIR$/../pesaPi-master/.idea/pesaPi-master.iml" filepath="$PROJECT_DIR$/../pesaPi-master/.idea/pesaPi-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../soap2/.idea/soap2.iml" filepath="$PROJECT_DIR$/../soap2/.idea/soap2.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/solventfund.iml" filepath="$PROJECT_DIR$/.idea/solventfund.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../test1/.idea/test1.iml" filepath="$PROJECT_DIR$/../test1/.idea/test1.iml" />
     </modules>
   </component>
 </project>

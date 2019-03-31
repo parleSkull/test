@@ -176,6 +176,7 @@ return [
         /*
          * Package Service Providers...
          */
+        App\Services\MobileMoney\Mpesa\Laravel\ServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -237,6 +238,14 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        
+        /*
+         * Package Aliases
+         */
+        'STK'       => App\Services\MobileMoney\Mpesa\Laravel\Facades\STK::class,
+        'Simulate'  => App\Services\MobileMoney\Mpesa\Laravel\Facades\Simulate::class,
+        'Registrar' => App\Services\MobileMoney\Mpesa\Laravel\Facades\Registrar::class,
+        'Identity'  => App\Services\MobileMoney\Mpesa\Laravel\Facades\Identity::class,
 
     ],
 

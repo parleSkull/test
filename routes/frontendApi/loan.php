@@ -4,6 +4,9 @@ use App\Http\Controllers\Frontend\Investment\API\InvestmentController;
 use App\Http\Controllers\Frontend\Loan\API\LoanController;
 use App\Http\Controllers\Frontend\Fund\API\WalletController;
 use App\Http\Controllers\Frontend\Fund\API\TransactionController;
+use App\Http\Controllers\Frontend\Fund\API\RequestPaymentController;
+use App\Http\Controllers\Frontend\Fund\API\MpesaController;
+use App\Http\Controllers\Frontend\Fund\API\MpesaCallbackController;
 
 /*
  * Frontend Access Controllers
@@ -53,5 +56,19 @@ Route::group(['namespace' => 'Loan\API', 'as' => 'loan.api.'], function () {
         Route::get('wallets/{wallet}/transactions', [TransactionController::class, 'byWallet'])->name('transactions.byWallet');
 
         Route::get('transactions/{transaction}', [TransactionController::class, 'show'])->name('transactions.show');
+
+        // Mobile Money
+        Route::post('mtn/request-payment', [RequestPaymentController::class, 'requestPayment'])->name('mtn.requestPayment');
+//        Route::post('mpesa/stk-push-callback', [MpesaController::class, 'processSTKPushQueryRequestCallback'])->name('mpesa.processSTKPushQueryRequestCallback');
+        Route::post('mpesa/deposit', [MpesaController::class, 'deposit'])->name('mpesa.deposit');
+
+    });
+
+    /*
+     * These routes do not require user to be logged in
+     */
+
+    Route::group(['middleware' => 'guest'], function () {
+        Route::post('mpesa/stk-result', [MpesaCallbackController::class, 'processSTKPushRequestCallback'])->name('mpesa.processSTKPushRequestCallback');
     });
 });

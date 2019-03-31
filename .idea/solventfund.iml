@@ -8,15 +8,18 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/arcanedev/log-viewer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/arcanedev/no-captcha" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/arcanedev/support" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/artisaninweb/laravel-soap" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/barryvdh/laravel-debugbar" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/barryvdh/laravel-ide-helper" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/barryvdh/reflection-docblock" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/bensampo/laravel-enum" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/beyondcode/laravel-dump-server" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/beyondcode/laravel-self-diagnosis" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/clue/stream-filter" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/codedungeon/php-cli-colors" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/codedungeon/phpunit-result-printer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/container-interop/container-interop" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/creativeorange/gravatar" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/davejamesmiller/laravel-breadcrumbs" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/defuse/php-encryption" />
@@ -45,6 +48,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/hamcrest/hamcrest-php" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/hassankhan/config" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/hieu-le/active" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/intervention/image" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/jakub-onderka/php-console-color" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/jakub-onderka/php-console-highlighter" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/justinrainbow/json-schema" />
@@ -60,11 +64,13 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/oauth1-client" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/oauth2-server" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/maximebf/debugbar" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/mews/captcha" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/mockery/mockery" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/monolog/monolog" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/myclabs/deep-copy" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nesbot/carbon" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nexmo/client" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/nikic/fast-route" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nikic/php-parser" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nunomaduro/collision" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/opis/closure" />
@@ -75,12 +81,17 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/phar-io/manifest" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phar-io/version" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/php-cs-fixer/diff" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/php-http/client-common" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/php-http/discovery" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/php-http/guzzle6-adapter" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/php-http/httplug" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/php-http/message" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/php-http/message-factory" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/php-http/promise" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-common" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-docblock" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpdocumentor/type-resolver" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/phpro/soap-client" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpseclib/phpseclib" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpspec/prophecy" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpunit/php-code-coverage" />
@@ -89,6 +100,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpunit/php-timer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpunit/php-token-stream" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpunit/phpunit" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/pimple/pimple" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/psr/cache" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/psr/container" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/psr/http-message" />
@@ -97,6 +109,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/psy/psysh" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/ralouphie/getallheaders" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/ramsey/uuid" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/safaricom/mpesa" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/sebastian/code-unit-reverse-lookup" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/sebastian/comparator" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/sebastian/diff" />
@@ -110,6 +123,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/sebastian/version" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/seld/jsonlint" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/seld/phar-utils" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/slim/slim" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/laravel-html" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/laravel-permission" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/swiftmailer/swiftmailer" />
@@ -124,6 +138,8 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/http-kernel" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/options-resolver" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-ctype" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-iconv" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-intl-idn" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-mbstring" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-php70" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-php72" />
@@ -140,11 +156,16 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/vlucas/phpdotenv" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/webmozart/assert" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/webpatser/laravel-uuid" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/zendframework/zend-code" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/zendframework/zend-diactoros" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/zendframework/zend-eventmanager" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="mobilemoney-master" />
     <orderEntry type="module" module-name="pesaPi-master" />
+    <orderEntry type="module" module-name="MobileMoney_HTTP" />
+    <orderEntry type="module" module-name="test1" />
+    <orderEntry type="module" module-name="soap2" />
   </component>
 </module>

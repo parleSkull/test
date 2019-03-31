@@ -3,5 +3,6 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$/../e-wallet" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../laravel-wallet" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../marketplacekit" vcs="Git" />
   </component>
 </project>
