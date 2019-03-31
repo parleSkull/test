@@ -53,9 +53,9 @@ class MpesaCallbackController extends Controller
         $checkoutRequestID=$callbackData->Body->stkCallback->CheckoutRequestID;
 
         if ($resultCode == 0){
-            $amount=$callbackData->stkCallback->Body->CallbackMetadata->Item[0]->Value;
+            $amount=$callbackData->Body->stkCallback->CallbackMetadata->Item[0]->Value;
             $mpesaReceiptNumber=$callbackData->Body->stkCallback->CallbackMetadata->Item[1]->Value;
-            $balance=$callbackData->stkCallback->Body->CallbackMetadata->Item[2]->Value;
+            $balance=$callbackData->Body->stkCallback->CallbackMetadata->Item[2]->Value;
             $transactionDate=$callbackData->Body->stkCallback->CallbackMetadata->Item[3]->Value;
             $phoneNumber=$callbackData->Body->stkCallback->CallbackMetadata->Item[4]->Value;
         }else{
@@ -98,7 +98,7 @@ class MpesaCallbackController extends Controller
         ])->first();
 
         if ($stkResponse->s_t_k_request->s_t_k_result){
-            $resultObj = $stkResponse->s_t_k_request->s_t_k_result->update($result);
+            $stkResponse->s_t_k_request->s_t_k_result->update($result);
             $resultObj = $stkResponse->s_t_k_request->s_t_k_result;
         }else{
             $resultObj = $stkResponse->s_t_k_request->s_t_k_result()->create($result);

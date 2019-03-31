@@ -211,11 +211,15 @@ class STK
         $shortCode = $configs->getAccountKey('lnmo.short_code');
         $passkey   = $configs->getAccountKey('lnmo.passkey');
         $callback  = url($configs->getAccountKey('lnmo.callback'));
+        $password = $this->getPassword($shortCode, $passkey, $time);
+
         Log::debug('Callback url '.$callback);
+        Log::debug('password '.$password);
+        Log::debug('timestamp '.$time);
 
         $body = [
             'BusinessShortCode' => $shortCode,
-            'Password'          => $this->getPassword($shortCode, $passkey, $time),
+            'Password'          => $password,
             'Timestamp'         => $time,
             'TransactionType'   => $commandId ?: $this->commandId,
             'Amount'            => $amount ?: $this->amount,
