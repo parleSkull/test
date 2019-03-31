@@ -43,19 +43,39 @@ class MpesaCallbackController extends Controller
     public function processSTKPushRequestCallback(Request $request){
 //        $callbackJSONData=file_get_contents('php://input');
 //        $callbackData=json_decode($callbackJSONData);
-        $callbackData = $request->json('Body');
+        $callbackJSONData=$request->getContent();
+        $callbackData=json_decode($callbackJSONData);
+        $resultCode=$callbackData->Body->stkCallback->ResultCode;
+        $resultDesc=$callbackData->Body->stkCallback->ResultDesc;
+        $merchantRequestID=$callbackData->Body->stkCallback->MerchantRequestID;
+        $checkoutRequestID=$callbackData->Body->stkCallback->CheckoutRequestID;
 
-        $resultCode=Arr::get($callbackData, 'stkCallback.ResultCode');
-        $resultDesc=Arr::get($callbackData, 'stkCallback.ResultDesc');
-        $merchantRequestID=Arr::get($callbackData, 'stkCallback.MerchantRequestID');
-        $checkoutRequestID=Arr::get($callbackData, 'stkCallback.CheckoutRequestID');
+        if ($resultCode == 0){
+            $amount=$callbackData->stkCallback->Body->CallbackMetadata->Item[0]->Value;
+            $mpesaReceiptNumber=$callbackData->Body->stkCallback->CallbackMetadata->Item[1]->Value;
+            $balance=$callbackData->stkCallback->Body->CallbackMetadata->Item[2]->Value;
+            $transactionDate=$callbackData->Body->stkCallback->CallbackMetadata->Item[3]->Value;
+            $phoneNumber=$callbackData->Body->stkCallback->CallbackMetadata->Item[4]->Value;
+        }else{
+            $amount=null;
+            $mpesaReceiptNumber=null;
+            $balance=null;
+            $transactionDate=null;
+            $phoneNumber=null;
+        }
 
-        $callbackMetadata=Arr::get($callbackData, 'stkCallback.CallbackMetadata.Item');
-        $amount=Arr::get($callbackMetadata[0], 'Value', null);
-        $mpesaReceiptNumber=Arr::get($callbackMetadata[1], 'Value', null);
-        $balance=Arr::get($callbackMetadata[2], 'Value', null);
-        $transactionDate=Arr::get($callbackMetadata[3], 'Value', null);
-        $phoneNumber=Arr::get($callbackMetadata[4], 'Value', null);
+//        $callbackData = $request->json('Body');
+//        $resultCode=Arr::get($callbackData, 'stkCallback.ResultCode');
+//        $resultDesc=Arr::get($callbackData, 'stkCallback.ResultDesc');
+//        $merchantRequestID=Arr::get($callbackData, 'stkCallback.MerchantRequestID');
+//        $checkoutRequestID=Arr::get($callbackData, 'stkCallback.CheckoutRequestID');
+//
+//        $callbackMetadata=Arr::get($callbackData, 'stkCallback.CallbackMetadata.Item');
+//        $amount=Arr::get($callbackMetadata[0], 'Value', null);
+//        $mpesaReceiptNumber=Arr::get($callbackMetadata[1], 'Value', null);
+//        $balance=Arr::get($callbackMetadata[2], 'Value', null);
+//        $transactionDate=Arr::get($callbackMetadata[3], 'Value', null);
+//        $phoneNumber=Arr::get($callbackMetadata[4], 'Value', null);
 
         $result=[
             "resultDesc"=>$resultDesc,

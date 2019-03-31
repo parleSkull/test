@@ -49,7 +49,7 @@ class MpesaController extends Controller
             ->usingAccount('staging')
             ->payAs(MpesaConstant::TRANSACTIONTYPE_CUSTOMER_PAYBILL_ONLINE)
             ->trackBy($stk_request->uuid)
-            ->usingReference('SolventFund Investment', 'Deposit Funds')
+            ->usingReference($stk_request->PhoneNumber, 'Deposit Funds')
             ->updateModel($stk_request)
             ->push();
 
