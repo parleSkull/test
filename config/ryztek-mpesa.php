@@ -54,7 +54,8 @@ return [
             'lnmo' => [
                 'short_code' => 174379,
                 'passkey' => 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919',
-                'callback' => 'api/mpesa/stk-result'
+                'callback' => 'api/mpesa/stk-result',
+                'callback_custom' => 'http://45.33.113.193:80/api/mpesa/stk-result'
             ]
         ],
 
